@@ -13,7 +13,6 @@ class List extends Component {
   }
 
   onDeleteTask(id) {
-    this.addClass.current.classList.add("fall");
     this.props.onDeleteTask(id);
   }
 

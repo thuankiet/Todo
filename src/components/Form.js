@@ -35,7 +35,6 @@ class Form extends Component {
     this.setState({
       description: "",
       status: false,
-      isRemove: false,
     });
   }
 
