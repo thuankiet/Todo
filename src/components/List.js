@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as actions from "./../actions/index";
 
 class List extends Component {
   constructor(props) {
     super(props);
-    this.addClass = React.createRef();
     this.onUpdateStatus = this.onUpdateStatus.bind(this);
     this.onDeleteTask = this.onDeleteTask.bind(this);
   }
@@ -111,4 +112,22 @@ class List extends Component {
   }
 }
 
-export default List;
+const mapStateToProps = (state) => {
+  return {
+    tasks: state.tasks,
+    filterTask: state.filterTask,
+  };
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    onDeleteTask: (id) => {
+      dispatch(actions.deleteTask(id));
+    },
+    onUpdateStatus: (id) => {
+      dispatch(actions.updateTask(id));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);

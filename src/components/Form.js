@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as actions from "./../actions/index";
 
 class Form extends Component {
   constructor(props) {
@@ -27,7 +29,7 @@ class Form extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    this.props.onSubmit(this.state);
+    this.props.onAddTask(this.state);
     this.onClear();
   }
 
@@ -72,4 +74,19 @@ class Form extends Component {
   }
 }
 
-export default Form;
+const mapStateToProps = (state) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    onAddTask: (task) => {
+      dispatch(actions.addTask(task));
+    },
+    onFilter: (filter) => {
+      dispatch(actions.filterList(filter));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
